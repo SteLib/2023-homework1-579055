@@ -18,9 +18,11 @@ public class Giocatore {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;		
 	}
+	
 	public Borsa getBorsa() {
 		return this.borsa;
 	}
+	
 	public void setBorsa(Borsa borsa) {
 		this.borsa = borsa;
 		
