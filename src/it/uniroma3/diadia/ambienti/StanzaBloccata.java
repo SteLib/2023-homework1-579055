@@ -11,7 +11,7 @@ public class StanzaBloccata extends Stanza{
 		this.nomeAttrezzoSblocca = nomeAttrezzoSblocca;
 	}
 
-	@Override
+	
 	public Stanza getStanzaAdiacente(String direzione) {
 		if(direzioneBloccata.equals(direzione) && !this.hasAttrezzo(nomeAttrezzoSblocca) )
 			return this;

@@ -1,41 +1,48 @@
 package it.uniroma3.diadia;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IOSimulator implements IO{
 
-	private int indiceProxComando;
-	private String[] comandiLetti;
-	private String[] messaggiStampati;
-	private int indiceMessaggiStampati;
+	private int indiceMessaggiMostrati;
+	private List<String> comandiLetti;
+	private List<String> messaggiStampati;
+	private int indiceRigheLette;
 
-	public IOSimulator (String[] comandiLetti) {
+	public IOSimulator (List<String> comandiLetti) {
 		this.comandiLetti=comandiLetti;
-		this.indiceProxComando=0;
-		this.indiceMessaggiStampati=0;
-		this.messaggiStampati= new String[50];
+		this.messaggiStampati= new ArrayList<String>();
+		this.indiceMessaggiMostrati=0;
+		this.indiceRigheLette=0;
+	}
+	
+	public List<String> getMessaggiStampati() {
+		return messaggiStampati;
 	}
 
+	public void setMessaggiStampati(List<String> messaggiStampati) {
+		this.messaggiStampati = messaggiStampati;
+	}
+	
 	@Override
 	public void mostraMessaggio (String messaggio) {
-		messaggio = this.messaggiStampati[this.indiceMessaggiStampati];
-		indiceMessaggiStampati++;
+		this.messaggiStampati.add(indiceMessaggiMostrati, messaggio);
+		indiceMessaggiMostrati++;
 	}
 
 
 	@Override
 	public String leggiRiga() {
-		if (this.comandiLetti.length == 0)
-			return null;
+		String riga=null;
+		if (this.comandiLetti.isEmpty())
+			return riga;
 		else
-			return this.comandiLetti[this.indiceProxComando++];
+		riga = this.comandiLetti.get(indiceRigheLette);
+		indiceRigheLette++;
+		return riga;
 	}
 
-	public String[] getMessaggiStampati() {
-		return messaggiStampati;
-	}
-
-	public void setMessaggiStampati(String[] messaggiStampati) {
-		this.messaggiStampati = messaggiStampati;
-	}
-
+	
 
 }

@@ -3,6 +3,7 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.giocatore.Giocatore;
 
 /**
  * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
@@ -11,12 +12,11 @@ import it.uniroma3.diadia.ambienti.Stanza;
 public class ComandoVai implements Comando {
 	private String direzione;
 	private IO io;
-	private String comando;
-	
-	public ComandoVai(String direzione, IO io) {
-		this.direzione = direzione;
+	private final static String NOME = "vai";
+
+	public ComandoVai(String parametro, IO io) {
+		this.direzione = parametro;
 		this.io=io;
-		this.comando="vai";
 	}
 
 	/**
@@ -29,18 +29,19 @@ public class ComandoVai implements Comando {
 
 		if (direzione==null) {
 			io.mostraMessaggio("Dove vuoi andare? devi specificare una direzione");
-
 			return;
 		}
-		
+
 		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
 		if (prossimaStanza==null) {
 			io.mostraMessaggio("Direzione inesitente");
 			return;
 		}
+
 		partita.setStanzaCorrente(prossimaStanza);
-		io.mostraMessaggio(partita.getStanzaCorrente().getNome());
-		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
+		this.io.mostraMessaggio(partita.getStanzaCorrente().getNome());
+		Giocatore giocatore = partita.getGiocatore();
+		giocatore.setCfu(giocatore.getCfu() - 1);	
 	}
 
 	@Override
@@ -50,17 +51,17 @@ public class ComandoVai implements Comando {
 
 	@Override
 	public String getParametro() {
-		return direzione;
+		return this.direzione;
 	}
-	
+
 	@Override
 	public String getNome() {
-		return comando;
+		return NOME;
 	}
-	
+
 	@Override
 	public void setIo(IO io) {
 		this.io = io;
-		
+
 	}
 }

@@ -6,34 +6,28 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**Comando prendi gli attrezzi presi vengono rimossi dalla stanza e aggiunti alla borsa*/
 public class ComandoPrendi implements Comando{
-	private String prendi="prendi";
+	private final static String NOME = "prendi";
 	private IO io;
 	private String nomeAttrezzo;
 	
-	public ComandoPrendi(String prendi, IO io) {
-		this.prendi = prendi;
+	public ComandoPrendi(String parametro, IO io) {
+		this.nomeAttrezzo=parametro;
 		this.io = io;
-	}
-	
-	public ComandoPrendi() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void esegui(Partita partita) {
 
-		Attrezzo attrezzo = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		Attrezzo attrezzo = partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 
-		if (partita.getStanzaCorrente() == null && attrezzo == null)
+		if (partita.getLabirinto().getStanzaCorrente() == null && attrezzo == null)
 		return;
 		if(attrezzo == null)	{
 			io.mostraMessaggio(" nessun attrezzo da prendere");
 			return;
 		}
 		partita.getGiocatore().getBorsa().addAttrezzo(attrezzo);
-		partita.getStanzaCorrente().removeAttrezzo(attrezzo);
-	
-
+		partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzo);
 		io.mostraMessaggio("Il tuo attrezzo e' stato preso");
 	}
 	
@@ -56,6 +50,6 @@ public class ComandoPrendi implements Comando{
 
 	@Override
 	public String getNome() {
-		return prendi;
+		return NOME;
 	}
 }

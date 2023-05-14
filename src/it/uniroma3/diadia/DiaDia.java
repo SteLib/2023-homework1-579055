@@ -1,6 +1,8 @@
 package it.uniroma3.diadia;
 
 import java.util.Scanner;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
@@ -32,12 +34,12 @@ public class DiaDia {
 	private Partita partita;
 	private IO io;
 
-	public DiaDia(IO io) {
-		this.partita = new Partita();
+	public DiaDia(Labirinto labirinto, IO io) {
+		this.partita = new Partita(labirinto);
 		this.io=io;
+		partita.setLabirinto(labirinto);
 	}
-
-
+	
 	public void gioca() {
 		String istruzione; 
 		Scanner scannerDiLinee;
@@ -47,8 +49,6 @@ public class DiaDia {
 		do		
 			istruzione = scannerDiLinee.nextLine();
 		while (!processaIstruzione(istruzione));}   
-
-
 
 	/**
 	 * Processa una istruzione 
@@ -68,10 +68,17 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}
 
-
 	public static void main(String[] argc) {
+		/* N.B. unica istanza di IOConsole
+		di cui sia ammessa la creazione */
 		IO io = new IOConsole();
-		DiaDia gioco = new DiaDia(io);
+		Labirinto labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.getLabirinto();
+		DiaDia gioco = new DiaDia(labirinto,io);
 		gioco.gioca();
 	}
 }

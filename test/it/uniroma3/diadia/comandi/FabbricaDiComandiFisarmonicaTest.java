@@ -33,7 +33,7 @@ class FabbricaDiComandiFisarmonicaTest {
 	
 	@Test
 	public void testComandoSenzaParametro2() {
-		comandoFine = new ComandoFine("fine", io);
+		comandoFine = new ComandoFine(io);
 		assertEquals( comandoFine.getNome(), fabbrica.costruisciComando("fine").getNome());
 	}
 }

@@ -6,12 +6,12 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 
 public class ComandoPosa implements Comando{
-	private String posa="posa";
+	private final static String NOME = "posa";
 	private IO io;
 	private String nomeAttrezzo;
 	
-	public ComandoPosa(String posa, IO io) {
-		this.posa=posa;
+	public ComandoPosa(String parametro,IO io) {
+		this.nomeAttrezzo=parametro;
 		this.io=io;
 	}
 
@@ -26,7 +26,7 @@ public class ComandoPosa implements Comando{
 			io.mostraMessaggio("nessun attrezzo da posare");
 			return;
 			}
-		partita.getStanzaCorrente().addAttrezzo(attrezzo);
+		partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
 		partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
 
 		io.mostraMessaggio("Il tuo attrezzo e' stato posato");
@@ -47,7 +47,7 @@ public class ComandoPosa implements Comando{
 
 	@Override
 	public String getNome() {
-		return posa;
+		return NOME;
 	}
 	
 	@Override

@@ -2,14 +2,15 @@ package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
 
 public class ComandoGuarda implements Comando{
 	
-	private String guarda="guarda";
+	private final static String NOME = "guarda";
 	private IO io;
+	private Labirinto labirinto;
 	
-	public ComandoGuarda(String guarda, IO io) {
-		this.guarda=guarda;
+	public ComandoGuarda(IO io) {
 		this.io=io;
 	}
 	
@@ -17,7 +18,7 @@ public class ComandoGuarda implements Comando{
 	@Override
 	public void esegui(Partita partita) {
 		io.mostraMessaggio("Ciao giocatore "
-						+ "Questa è la tua stanza corrente: " + partita.getStanzaCorrente());
+						+ "Questa è la tua stanza corrente: " + labirinto.getStanzaCorrente());
 		io.mostraMessaggio("Questi sono i tuoi cfu: " + partita.getGiocatore().getCfu());
 		io.mostraMessaggio("Questi sono i tuoi attrezzi: "+ partita.getGiocatore().getBorsa());
 	}
@@ -31,7 +32,7 @@ public class ComandoGuarda implements Comando{
 	@Override
 	public String getParametro() {
 		//
-		return guarda;
+		return null;
 	}
 	
 	@Override
@@ -42,7 +43,7 @@ public class ComandoGuarda implements Comando{
 
 	@Override
 	public String getNome() {
-		return guarda;
+		return NOME;
 	}
 
 }

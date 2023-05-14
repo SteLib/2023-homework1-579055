@@ -51,6 +51,11 @@ public class Attrezzo {
 		
 		return this.getNome()+" ("+this.getPeso()+"kg)";
 	}
+
+	@Override
+	public int hashCode() {
+		return this.getNome().hashCode() + this.getPeso();
+	}
 	
 	@Override
 	public boolean equals(Object o) {

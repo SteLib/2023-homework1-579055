@@ -4,11 +4,10 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
 public class ComandoNonValido implements Comando{
-	private String nonValido ="non valido";
+	private final static String NOME = "non valido";
 	private IO io;
 	
-	public ComandoNonValido(String nonValido, IO io) {
-		this.nonValido=nonValido;
+	public ComandoNonValido(IO io) {
 		this.io=io;
 	}
 	@Override
@@ -18,16 +17,21 @@ public class ComandoNonValido implements Comando{
 
 	@Override
 	public void setParametro(String parametro) {
-		//
+		// TODO Auto-generated method stub
+
 	}
+
 	@Override
 	public String getParametro() {
-		return nonValido;
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 	@Override
 	public String getNome() {
-		return nonValido;
+		return NOME;
 	}
+	
 	@Override
 	public void setIo(IO io) {
 		this.io = io;

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,6 @@ class StanzaTest {
 	private Stanza vuota;
 	private Stanza nonVuota;
 	private Attrezzo osso;
-
 	
 	@BeforeEach
 	public void setUp() {
@@ -21,6 +21,7 @@ class StanzaTest {
 		this.nonVuota= new Stanza("non-vuota");
 		this.osso= new Attrezzo("osso", 1);
 		this.nonVuota.addAttrezzo(osso);
+
 	}
 	
 	@Test
