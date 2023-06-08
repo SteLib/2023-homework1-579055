@@ -21,9 +21,9 @@ public class Partita {
 	public Partita(Labirinto labirinto){
 		this.giocatore = new Giocatore();
 		this.labirinto = labirinto;
-		this.labirinto.creaStanze();
 		this.finita = false;
 	}
+			
 	public void setLabirinto(Labirinto labirinto) {
 		this.labirinto = labirinto;
 	}

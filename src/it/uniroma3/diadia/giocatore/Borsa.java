@@ -72,6 +72,14 @@ public class Borsa {
 				this.attrezzi.remove(nomeAttrezzo);
 		}
 	}
+	
+	/*utile per strega */
+	public void removeAttrezzo(Attrezzo nomeAttrezzo) {
+		if(nomeAttrezzo!=null) {
+			if(this.attrezzi.containsKey(nomeAttrezzo.getNome())) 
+				this.attrezzi.remove(nomeAttrezzo.getNome());
+		}
+	}
 
 	public String toString() {
 		StringBuilder s = new StringBuilder();

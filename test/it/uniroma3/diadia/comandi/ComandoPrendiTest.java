@@ -3,6 +3,8 @@ package it.uniroma3.diadia.comandi;
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,6 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class ComandoPrendiTest {
@@ -20,21 +21,15 @@ class ComandoPrendiTest {
 	private Comando comando;
 	private IO io;
 	private Labirinto labirinto;
-	private String parametro;
 	
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		this.labirinto=new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("osso", 3)
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.getLabirinto();
+		 this.labirinto = Labirinto.newBuilder("labirinto2.txt").getLabirinto();
 		this.partita = new Partita(labirinto);
 		this.attrezzo=new Attrezzo("osso",4);
-		comando = new ComandoPrendi(parametro,io);
-		io = (IO) new IOConsole();
+		comando = new ComandoPrendi();
+		io = (IO) new IOConsole(new Scanner(System.in));
 		comando.setIo(io);
 	}
 	
@@ -46,7 +41,7 @@ class ComandoPrendiTest {
 		}
 	
 	@Test
-	void testAttrezzoPresoNonSiaNullo() {
+	void testAttrezzoPresoNonSiaNullo() throws Exception {
 		comando.setParametro("osso");
 		comando.esegui(partita);
 		assertFalse(attrezzoPresente("osso"));

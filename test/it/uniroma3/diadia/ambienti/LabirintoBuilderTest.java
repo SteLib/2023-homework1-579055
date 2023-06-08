@@ -7,14 +7,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.ambienti.Labirinto.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class LabirintoBuilderTest {
-	LabirintoBuilder labirinto;
+	Labirinto.LabirintoBuilder labirinto;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		labirinto = new LabirintoBuilder();
+		labirinto = new LabirintoBuilder("labirinto3.txt");
 	}
 
 	@Test
@@ -25,21 +26,21 @@ class LabirintoBuilderTest {
 
 	@Test
 	public void testAddAttrezzoSenzaUltimaStanzaAggiunta(){
-		assertEquals(LabirintoBuilder.class, labirinto.addAttrezzo("cacciavite", 3).getClass());
+		assertEquals(LabirintoBuilder.class, labirinto.addAttrezzo("estintore", 3).getClass());
 	}
 	
 	@Test
 	public void testAddAttrezzoConUltimaStanzaAggiunta(){
-		labirinto.addStanzaIniziale("stanzetta").addAttrezzo("cacciavite", 3);
-		Attrezzo atteso = new Attrezzo("cacciavite", 3);
-		assertEquals(atteso, labirinto.getLabirinto().getStanzaCorrente().getAttrezzo("cacciavite"));		
+		labirinto.addStanzaIniziale("N11").addAttrezzo("cacciavite", 3);
+		Attrezzo atteso = new Attrezzo("estintore", 3);
+		assertEquals(atteso, labirinto.getLabirinto().getStanzaCorrente().getAttrezzo("estintore"));		
 	}
 
 	@Test
     public void testAddAttrezzoConStanza() {
-        labirinto.addStanza("stanzetta");
-        labirinto.addAttrezzo("cacciavite", 3);
-        assertTrue(labirinto.getStanzaPerNome().get("stanzetta").hasAttrezzo("cacciavite"));
+        labirinto.addStanza("N11");
+        labirinto.addAttrezzo("estintore", 3);
+        assertTrue(labirinto.getNome2stanza().get("N11").hasAttrezzo("estintore"));
     }
 
 }

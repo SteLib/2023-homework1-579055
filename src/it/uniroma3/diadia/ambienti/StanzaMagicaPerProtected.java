@@ -12,9 +12,7 @@ public class StanzaMagicaPerProtected extends StanzaBasePerProtected{
 	public StanzaMagicaPerProtected(String nome) {
 		this(nome, SOGLIA_MAGICA_DEFAULT);
 	}
-	/*/
-	 * MOC
-	 */
+	
 	public StanzaMagicaPerProtected(String nome, int soglia) {
 		super(nome);
 		this.contatore=0;
@@ -26,8 +24,7 @@ public class StanzaMagicaPerProtected extends StanzaBasePerProtected{
 		int pesoX2 = attrezzo.getPeso() * 2;
 		nomeInvertito = new StringBuilder(attrezzo.getNome());
 		nomeInvertito = nomeInvertito.reverse();
-		attrezzo = new Attrezzo(nomeInvertito.toString(),
-				pesoX2);
+		attrezzo = new Attrezzo(nomeInvertito.toString(),pesoX2);
 		return attrezzo;
 	}
 

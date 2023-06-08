@@ -43,6 +43,14 @@ public class IOSimulator implements IO{
 		return riga;
 	}
 
-	
+	public String nextMessaggio() {
+		String next = this.messaggiStampati.get(indiceMessaggiMostrati);
+		this.indiceMessaggiMostrati++;
+		return next;
+	}
+
+	public boolean hasNextMessaggio() {
+		return this.indiceMessaggiMostrati < messaggiStampati.size();
+	}
 
 }

@@ -1,7 +1,8 @@
 package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,22 +19,22 @@ class FabbricaDiComandiFisarmonicaTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		io = (IO) new IOConsole();
+		io = (IO) new IOConsole(new Scanner(System.in));
 		fabbrica = new FabbricaDiComandiFisarmonica(io);
 	
 	}
 
 	@Test
-	void testComandoConParametro() {
-	comandoVai =new ComandoVai("ovest", io);
+	void testComandoConParametro() throws Exception {
+	comandoVai =new ComandoVai();
 	Comando corrente = fabbrica.costruisciComando("vai ovest");
 	assertEquals(comandoVai.getNome(), corrente.getNome());
 	assertEquals(comandoVai.getParametro(), corrente.getParametro());
 	}
 	
 	@Test
-	public void testComandoSenzaParametro2() {
-		comandoFine = new ComandoFine(io);
+	public void testComandoSenzaParametro2() throws Exception {
+		comandoFine = new ComandoFine();
 		assertEquals( comandoFine.getNome(), fabbrica.costruisciComando("fine").getNome());
 	}
 }

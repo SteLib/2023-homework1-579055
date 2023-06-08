@@ -1,8 +1,13 @@
 package it.uniroma3.diadia.ambienti;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.FileNotFoundException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import it.uniroma3.diadia.FormatoFileNonValidoException;
 
 class LabirintoTest {
 	private Labirinto labirinto;
@@ -10,14 +15,8 @@ class LabirintoTest {
 	Stanza n11;
 
 	@BeforeEach
-	public void setUp() {
-		this.labirinto = Labirinto.newBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("martello", 3)
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.getLabirinto();
-		
+	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException {
+		labirinto = Labirinto.newBuilder("labirinto2.txt").getLabirinto();
 		biblioteca = new Stanza("Biblioteca");
 		n11 = new Stanza("n11");
 	}

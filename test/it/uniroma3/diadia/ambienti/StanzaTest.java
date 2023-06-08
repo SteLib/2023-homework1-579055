@@ -26,8 +26,8 @@ class StanzaTest {
 	
 	@Test
 	void testImpostaStanzaAdiacente() {
-		this.nonVuota.impostaStanzaAdiacente("nord", vuota);
-		assertSame(this.vuota, this.nonVuota.getStanzaAdiacente("nord"));
+		this.nonVuota.impostaStanzaAdiacente(Direzione.nord, vuota);
+		assertSame(this.vuota, this.nonVuota.getStanzaAdiacente(Direzione.nord));
 	}
 	
 	@Test

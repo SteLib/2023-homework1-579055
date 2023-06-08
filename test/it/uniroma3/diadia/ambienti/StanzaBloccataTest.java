@@ -14,22 +14,22 @@ class StanzaBloccataTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		this.stanzaLock = new StanzaBloccata("StanzaBloccata", "ovest" ,"passpartout");
+		this.stanzaLock = new StanzaBloccata("StanzaBloccata", "passpartout" ,Direzione.ovest);
 		this.nomeAttrezzoSblocca=new Attrezzo("passpartout", 1);
 		this.stanzaNormale=new Stanza("camera");
-		stanzaLock.impostaStanzaAdiacente("ovest", stanzaNormale);
+		stanzaLock.impostaStanzaAdiacente(Direzione.ovest, stanzaNormale);
 		
 	}
 	
 	@Test
 	public void testGetStanzaAdiacenteDirezioneBloccata() {
-		assertEquals(stanzaLock, stanzaLock.getStanzaAdiacente("ovest"));
+		assertEquals(stanzaLock, stanzaLock.getStanzaAdiacente(Direzione.ovest));
 	}
 	
 	@Test
 	public void testGetStanzaAdiacsenteDirezioneSbloccata() {
 		stanzaLock.addAttrezzo(nomeAttrezzoSblocca);
-		assertEquals(stanzaNormale, stanzaLock.getStanzaAdiacente("ovest"));
+		assertEquals(stanzaNormale, stanzaLock.getStanzaAdiacente(Direzione.ovest));
 		
 	}
 
@@ -48,7 +48,7 @@ class StanzaBloccataTest {
 	@Test
 	void testDirezioneBlocataMaAttrezzoSblocca() {
 		stanzaLock.addAttrezzo(nomeAttrezzoSblocca);
-		assertEquals( stanzaNormale, stanzaLock.getStanzaAdiacente("ovest"));
+		assertEquals( stanzaNormale, stanzaLock.getStanzaAdiacente(Direzione.ovest));
 	}
 
 }

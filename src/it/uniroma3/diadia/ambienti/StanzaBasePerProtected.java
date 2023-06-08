@@ -54,8 +54,10 @@ public class StanzaBasePerProtected{
 	 * @param direzione
 	 */
 	public Stanza getStanzaAdiacente1(String direzione) {
-		return this.stanzeAdiacenti.get(direzione);
-		}
+		Stanza stanza = null;
+		if (this.stanzeAdiacenti.containsKey(direzione))
+			stanza = this.stanzeAdiacenti.get(direzione);
+		return stanza;		}
 	
 	/**
 	 * Restituisce la nome della stanza.
